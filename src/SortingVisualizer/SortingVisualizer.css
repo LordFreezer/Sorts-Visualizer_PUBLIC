@@ -3,15 +3,25 @@
     left: 10vw;
     top: 40vh; */
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  text-align: center;
+
+  align-items: center;
   justify-content: center;
 
 
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  max-width: 700px;
+}
+
 .btnlist {
-  position: fixed;
+  position: absolute;
   bottom: 0;
 
 
@@ -19,14 +29,31 @@
 
 button {
   font-size: 1.5rem;
+  margin: 1rem;
+  padding: 0.75rem;
+}
+
+img {
+
+  max-height: 300px;
+  max-width: 400px;
+}
+
+@media screen and (max-width: 600px) {
+  img {
+
+    height: 300px;
+    width: 100%
+  }
 }
 
 .box {
-  width: 100%;
-  max-width: 80%;
+  /* width: 100%;
+  max-width: 80%;*/
+  width: 600px;
   margin: 0.5rem;
   padding: 1rem;
-  height: 700px;
+
 }
 
 .array-bar {

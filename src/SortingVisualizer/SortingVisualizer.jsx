@@ -1,6 +1,7 @@
 import React from 'react';
-import { getRadixSortAnimations, getBubbleSortAnimations, getHeapSortAnimations, getInsertionSortAnimations, getMergeSortAnimations, getQuickSortAnimations, getQuickSortAnimations_2, getSelectionSortAnimations } from '../sortingAlgorithms/sortingAlgorithms.js';
+import { getShellSortAnimations, getRadixSortAnimations, getBubbleSortAnimations, getHeapSortAnimations, getInsertionSortAnimations, getMergeSortAnimations, getQuickSortAnimations, getQuickSortAnimations_2, getSelectionSortAnimations } from '../sortingAlgorithms/sortingAlgorithms.js';
 import './SortingVisualizer.css';
+import chart from '../assets/chart.png'
 
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 5;
@@ -9,10 +10,10 @@ const ANIMATION_SPEED_MS = 5;
 const NUMBER_OF_ARRAY_BARS = 40;
 
 // This is the main color of the array bars.
-const PRIMARY_COLOR = 'turquoise';
+const PRIMARY_COLOR = 'orange';
 
 // This is the color of array bars that are being compared throughout the animations.
-const SECONDARY_COLOR = 'red';
+const SECONDARY_COLOR = 'black';
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
@@ -186,9 +187,28 @@ export default class SortingVisualizer extends React.Component {
         setTimeout(() => {
           const barOneStyle = arrayBars[barOne].style;
           barOneStyle.height = `${barTwo}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
 
-
-
+  }
+  shellSort() {
+    const animations = getShellSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName('array-bar');
+      let [barOne, barTwo, change] = animations[i];
+      if (!change) {
+        const barOneStyle = arrayBars[barOne].style;
+        const barTwoStyle = arrayBars[barTwo].style;
+        const color = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const barOneStyle = arrayBars[barOne].style;
+          barOneStyle.height = `${barTwo}px`;
         }, i * ANIMATION_SPEED_MS);
       }
     }
@@ -229,24 +249,29 @@ export default class SortingVisualizer extends React.Component {
 
     return (
       <>
+
         <button onClick={() => this.resetArray()}>Generate New Array</button>
         <div className="array-container">
-          <div className='box'>
-            {array.map((value, idx) => (
-              <div
-                className="array-bar"
-                key={idx}
-                style={{
-                  backgroundColor: PRIMARY_COLOR,
-                  height: `${value}px`
-                }}>
-              </div>
-            ))}
+          <img className="column" src={chart} />
+          <div className="column">
+            <div className='box'>
+              {array.map((value, idx) => (
+                <div
+                  className="array-bar"
+                  key={idx}
+                  style={{
+                    backgroundColor: PRIMARY_COLOR,
+                    height: `${value}px`
+                  }}>
+                </div>
+              ))}
+            </div>
           </div>
 
 
+
         </div>
-        <div className='btnlist'>
+        <footer >
           <button onClick={() => this.mergeSort()}>Merge Sort</button>
           <button onClick={() => this.quickSortL()}>Lomuto's Quick Sort</button>
           <button onClick={() => this.quickSortH()}>Hoare's Quick Sort</button>
@@ -255,7 +280,8 @@ export default class SortingVisualizer extends React.Component {
           <button onClick={() => this.selectionSort()}>Selection Sort</button>
           <button onClick={() => this.insertionSort()}>Insertion Sort</button>
           <button onClick={() => this.radixSort()}>Radix Sort</button>
-        </div>
+          <button onClick={() => this.shellSort()}>Shell Sort</button>
+        </footer>
       </>
 
     );

@@ -272,25 +272,33 @@ export function getInsertionSortAnimations(array) {
   return animations;
 }
 function doInsertionSort(array, size, animations) {
-  let i, key, j;
-  for (i = 1; i < size; i++) {
-    key = array[i];
-    j = i - 1;
+
+  for (let i = 1; i < size; i++) {
+    let key = array[i];
+    let j = i - 1;
 
     /* Move elements of arr[0..i-1], that are 
     greater than key, to one position ahead 
     of their current position */
-
+    animations.push([j, i, false]);
+    animations.push([j, i, false]);
     while (j >= 0 && array[j] > key) {
-      animations.push([j, j + 1, false]);
-      animations.push([j, j + 1, false]);
 
-      array[j + 1] = array[j];
-      animations.push([j, array[j + 1], true]);
       animations.push([j + 1, array[j], true]);
+      animations.push([j + 1, array[j], true]);
+      array[j + 1] = array[j];
+
+
       j = j - 1;
+      if (j >= 0) {
+        animations.push([j, i, false]);
+        animations.push([j, i, false]);
+      }
+
 
     }
+    animations.push([j + 1, key, true]);
+    animations.push([j + 1, key, true]);
     array[j + 1] = key;
   }
 }
@@ -359,4 +367,50 @@ function doRadixSort(arr, n, animations) {
   // exp is 10^i where i is current digit number
   for (let exp = 1; Math.floor(m / exp) > 0; exp *= 10)
     countSort(arr, n, exp, animations);
+}
+
+export function getShellSortAnimations(array) {
+  const animations = [];
+  if (array.length <= 1) return array;
+  let size = array.length;
+  doShellSort(array, size, animations);
+  return animations;
+}
+
+function doShellSort(arr, n, animations) {
+
+
+  // Start with a big gap, then reduce the gap
+  for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
+
+    // Do a gapped insertion sort for this gap size.
+    // The first gap elements a[0..gap-1] are already
+    // in gapped order keep adding one more element
+    // until the entire array is gap sorted
+    for (let i = gap; i < n; i += 1) {
+
+      // add a[i] to the elements that have been gap
+      // sorted save a[i] in temp and make a hole at
+      // position i
+      let temp = arr[i];
+
+      // shift earlier gap-sorted elements up until
+      // the correct location for a[i] is found
+      let j;
+      for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+        animations.push([j, j - gap, false]);
+        animations.push([j, arr[j - gap], true]);
+        animations.push([j, arr[j - gap], true]);
+        arr[j] = arr[j - gap];
+        animations.push([j, j - gap, false]);
+      }
+      animations.push([j, temp, true]);
+      animations.push([j, temp, true]);
+
+      // put temp (the original a[i]) in its correct
+      // location
+      arr[j] = temp;
+    }
+  }
+  return arr;
 }
