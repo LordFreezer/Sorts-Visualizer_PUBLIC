@@ -8,8 +8,8 @@
 
 ## Contact
 
-You can find more projects like this at [projects](https://thederflinger.com/#projects)
+You can find more projects like this on my [portfolio](https://thederflinger.com/#projects)
 
-Or you can send me an email here [contact] (https://thederflinger.com/#contact)
+Or you can send me an email [here](https://thederflinger.com/#contact)
 
 
