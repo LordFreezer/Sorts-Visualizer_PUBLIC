@@ -174,40 +174,47 @@ export function getHeapSortAnimations(array) {
   doHeapSort(array, size, animations);
   return animations;
 }
-//Recursive heapify function. We call until we find the root of the array
+// To heapify a subtree rooted with node i which is
+// an index in array[].
 function heapify(array, size, i, animations) {
-  let root = i;
-  let left = 2 * i + 1;
-  let right = 2 * i + 2;
-  if (left < size && array[left] > array[root]) {
-    animations.push([root, left, false]);
-    animations.push([root, left, false]);
-    root = left;
+  let largest = i; // Initialize largest as root
+  let l = 2 * i + 1; // left = 2*i + 1
+  let r = 2 * i + 2; // right = 2*i + 2
+
+  // If left child is larger than root
+  if (l < size && array[l] > array[largest]) {
+    animations.push([largest, l, false]);
+    animations.push([largest, l, false]);
+    largest = l;
   }
-  if (right < size && array[right] > array[root]) {
-    animations.push([root, right, false]);
-    animations.push([root, right, false]);
-    root = right;
+  // If right child is larger than largest so far
+  if (r < size && array[r] > array[largest]) {
+    animations.push([largest, r, false]);
+    animations.push([largest, r, false]);
+    largest = r;
   }
-  //Root has changed because i was not the root
-  if (root !== i) {
-    animations.push([root, array[i], true]);
-    animations.push([i, array[root], true]);
-    //If root is not i, then swap the values, call heapify recursively
-    swap(array, root, i);
-    heapify(array, size, root, animations);
+  // If largest is not root
+  if (largest !== i) {
+    animations.push([largest, array[i], true]);
+    animations.push([i, array[largest], true]);
+    // Recursively heapify the affected sub-tree
+    swap(array, largest, i);
+    heapify(array, size, largest, animations);
   }
 }
 function doHeapSort(array, size, animations) {
-  // Create max heap
-  for (let i = (size / 2) - 1; i >= 0; i--) {
+  // Build heap (rearrange array)
+  for (let i = Math.floor(size / 2) - 1; i >= 0; i--) {
     heapify(array, size, i, animations);
   }
-  // Now do the actual heap sort
+  // One by one extract an element from heap
   for (let i = size - 1; i >= 0; i--) {
+    // Move current root to end
     animations.push([i, array[0], true]);
     animations.push([0, array[i], true]);
     swap(array, i, 0);
+
+    // call max heapify on the reduced heap
     heapify(array, i, 0, animations);
   }
 }
@@ -224,6 +231,7 @@ function doBubbleSort(array, size, animations) {
       animations.push([i, k, false]);
       animations.push([i, k, false]);
       if (array[k] > array[k + 1]) {
+        // swap array[j+1] and array[j]
         animations.push([k, array[k + 1], true]);
         animations.push([k + 1, array[k], true]);
         swap(array, k, k + 1);
