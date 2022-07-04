@@ -385,7 +385,7 @@ export function getShellSortAnimations(array) {
   return animations;
 }
 
-function doShellSort(arr, n, animations) {
+function doShellSort(array, n, animations) {
 
 
   // Start with a big gap, then reduce the gap
@@ -400,16 +400,16 @@ function doShellSort(arr, n, animations) {
       // add a[i] to the elements that have been gap
       // sorted save a[i] in temp and make a hole at
       // position i
-      let temp = arr[i];
+      let temp = array[i];
 
       // shift earlier gap-sorted elements up until
       // the correct location for a[i] is found
       let j;
-      for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+      for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
         animations.push([j, j - gap, false]);
-        animations.push([j, arr[j - gap], true]);
-        animations.push([j, arr[j - gap], true]);
-        arr[j] = arr[j - gap];
+        animations.push([j, array[j - gap], true]);
+        animations.push([j, array[j - gap], true]);
+        array[j] = array[j - gap];
         animations.push([j, j - gap, false]);
       }
       animations.push([j, temp, true]);
@@ -417,8 +417,8 @@ function doShellSort(arr, n, animations) {
 
       // put temp (the original a[i]) in its correct
       // location
-      arr[j] = temp;
+      array[j] = temp;
     }
   }
-  return arr;
+  return array;
 }
