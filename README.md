@@ -18,20 +18,29 @@ partition scheme, heap sort, bubble sort, selection sort, insertion sort, radix 
 
 
 ## Usage
-https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/home.png
 On the landing page, you can find a generate an array of random numbers between 10 and 600.
 <p align="center">
   <img src="https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/home.png" />
 </p>
 
-## Contact
+You can click on a sorting algorithm below to sort the bars on the screen. Below you can see a radix sort
+in action.
+<p align="center">
+  <img src="https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/mid.png" />
+</p>
 
+Now the bars are sorted!
+<p align="center">
+  <img src="https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/end.png" />
+</p>
+
+## Contact
 You can find more projects like this on my [portfolio](https://thederflinger.com/#projects)
 
 Or you can send me an email [here](https://thederflinger.com/#contact).
 
 ## Special Thanks
 I would like to thank [Nikhil Sawant](https://github.com/NickSaw22) and [Kevin](https://github.com/Kevin6525) for their 
-open-source variations of the project. I used them to debug animation problems in my heap sort and radix sort.
+open-source variations of the project. I used both to debug animation problems in my heap sort and radix sort.
 
 
