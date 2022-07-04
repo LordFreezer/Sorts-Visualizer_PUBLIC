@@ -1,4 +1,5 @@
 # Sorting Visualizer by Chad Marshall
+https://sorts.netlify.app/
 
 ## About The Project
 Inspired by [Clément Mihailescu](https://github.com/clementmihailescu), I set out to create my own sorting algorithm
@@ -6,7 +7,6 @@ visualizer. Using his demo of merge sort, I extended the project to include quic
 partition scheme, heap sort, bubble sort, selection sort, insertion sort, radix sort, shell sort, and merge sort.
 
 ## Built With
-https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/react.png
 <table>
 	<tr>
   <img height="50px" class="center-block" src="https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/react.png">
