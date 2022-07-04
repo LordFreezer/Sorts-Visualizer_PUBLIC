@@ -7,12 +7,15 @@ partition scheme, heap sort, bubble sort, selection sort, insertion sort, radix 
 
 ## Built With
 https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/react.png
-<div class="row">
-  <div class="col-md-4" markdown="1">
+<table>
+	<tr>
   <img height="50px" class="center-block" src="https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/react.png">
+  </tr>
+  <tr>
   React
-  </div>
-</div>
+  </tr>
+  </table>
+
 
 ## Usage
 
