@@ -18,6 +18,11 @@ partition scheme, heap sort, bubble sort, selection sort, insertion sort, radix 
 
 
 ## Usage
+https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/home.png
+On the landing page, you can find a generate an array of random numbers between 10 and 600.
+<p align="center">
+  <img src="https://github.com/LordFreezer/Sorts-Visualizer_PUBLIC/blob/ASSETS/src/home.png" />
+</p>
 
 ## Contact
 
