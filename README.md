@@ -15,6 +15,92 @@ partition scheme, heap sort, bubble sort, selection sort, insertion sort, radix 
   React
   </tr>
   </table>
+  
+## Algorithms
+### Quick Sort (Hoare Partition)
+```
+Partition(arr[], lo, hi)
+   pivot = arr[lo]
+   i = lo - 1  // Initialize left index
+   j = hi + 1  // Initialize right index
+
+   // Find a value in left side greater
+   // than pivot
+   do
+      i = i + 1
+   while arr[i] < pivot
+
+   // Find a value in right side smaller
+   // than pivot
+   do
+      j--
+   while (arr[j] > pivot);
+
+   if i >= j then 
+      return j
+
+   swap arr[i] with arr[j]
+   
+QuickSort(arr[], lo, hi) 
+  if lo < hi then
+    pivot = Partition(arr[], lo, hi)
+    QuickSort(arr[], lo, pivot)
+    QuickSort(arr[], pivot + 1, hi)
+```
+### Quick Sort (Lomuto Partition)
+```
+Partition(arr[], lo, hi) 
+    pivot = arr[hi]
+    i = lo     // place for swapping
+    for j := lo to hi – 1 do
+        if arr[j] <= pivot then
+            i = i + 1 
+            swap arr[i] with arr[j]
+    swap arr[i] with arr[hi]
+    return i
+    
+ QuickSort(arr[], lo, hi)
+    if lo < hi then 
+        /* pi is partitioning index,
+        arr[p] is now at right place */
+        partition = Partition(arr[], lo, hi)
+  
+        // Separately sort elements before
+        // partition and after partition
+        QuickSort(arr[], lo, partition - 1)
+        QuickSort(arr[], partition + 1, hi)
+```
+### Merge Sort
+```
+  PerformMerge(arr[], startIdx, middleIdx, endIdx, aux[])
+     if startIdx is equal to endIdx then 
+         return nothing
+     middleIdx = startIdx + endIdx / 2
+     PerformMerge(aux[], startIdx, middleIdx, arr[])
+     PerformMerge(aux[], middleIdx + 1, endIdx, arr[])
+     Merge(arr[], startIdx, middleIdx, endIdx, aux[])
+  
+  Merge(arr[], startIdx, middleIdx, endIdx, aux[]) 
+    // Maintain current index of auxilary array and main array
+    k = startIdx
+    i = startIdx
+    j = middleIdx + 1
+
+    // Until we reach either end of either L or M, pick larger among
+    // elements L and M and place them in the correct position at A[p..r]
+    while (i <= middleIdx and j <= endIdx) 
+       if (aux[i] <= aux[j]) then
+           arr[k++] = aux[i++]
+       else 
+           arr[k++] = aux[j++]
+	   
+    // When we run out of elements in either L or M,
+    // pick up the remaining elements and put in A[p..r]
+    while (i <= middleIdx) 
+        arr[k++] = aux[i++]
+    while (j <= endIdx) 
+        arr[k++] = aux[j++]
+```
 
 
 ## Usage
