@@ -70,6 +70,46 @@ Partition(arr[], lo, hi)
         QuickSort(arr[], lo, partition - 1)
         QuickSort(arr[], partition + 1, hi)
 ```
+### Heap Sort
+```
+HeapSort(arr[])
+        n = arr.len
+  
+        // Build heap (rearrange array)
+        for i := n / 2 - 1; i to 0 do
+            Heapify(arr[], n, i)
+  
+        // One by one extract an element from heap
+        for i := n - 1 to 0 do
+            // Move current root to end
+            Swap(arr[], i, 0)
+  
+            // call max heapify on the reduced heap
+            Heapify(arr[], i, 0)
+  
+    // To heapify a subtree rooted with node i which is
+    // an index in arr[]. n is size of heap
+    Heapify(arr[], n, i)
+        // Initialize largest as root
+        largest = i 
+        l = 2 * i + 1 
+        r = 2 * i + 2
+  
+        // If left child is larger than root
+        if l < n and arr[l] > arr[largest] then
+            largest = l
+  
+        // If right child is larger than largest so far
+        if r < n and arr[r] > arr[largest] then
+            largest = r
+  
+        // If largest is not root
+        if largest does not equal i then
+            Swap(arr[], i, largest)
+  
+            // Recursively heapify the affected sub-tree
+            Heapify(arr[], n, largest)
+```
 ### Merge Sort
 ```
   PerformMerge(arr[], startIdx, middleIdx, endIdx, aux[])
@@ -100,6 +140,120 @@ Partition(arr[], lo, hi)
         arr[k++] = aux[i++]
     while (j <= endIdx) 
         arr[k++] = aux[j++]
+```
+### Bubble Sort
+```
+BubbleSort(arr[], size) 
+  for i := 0 to size - 1 do
+    for k := 0 to size - i + 1 do
+      if arr[k] > array[k + 1] then
+        // swap array[j+1] and array[j]
+        Swap(arr[], k, k + 1)
+```
+### Selection Sort
+```
+SelectionSort(arr[], size) {
+  //variables i, j, min_idx may need to be declared outside of for loop
+
+  // One by one move boundary of unsorted subarray
+  for i := 0 to size - 1 do
+    // Find the minimum element in unsorted array
+    min_idx = i
+    for j := i + 1 to size do
+      if arr[j] < arr[min_idx]) then
+        min_idx = j
+ 
+    // Swap the found minimum element with the first element
+    Swap(arr[], min_idx, i)
+```
+### Insertion Sort
+```
+InsertionSort(arr[], size) 
+  for i := 1 to size do
+    key = arr[i]
+    j = i - 1
+
+    /* Move elements of arr[0..i-1], that are 
+    greater than key, to one position ahead 
+    of their current position */
+    while j >= 0 and arr[j] > key
+      arr[j + 1] = arr[j]
+      j = j - 1
+      
+    arr[j + 1] = key
+```
+### Count Sort
+```
+CountSort(arr[], n, exp) 
+  //variables output, i, and count may need to declared outside of for loop
+  output := array of n elements
+  count := array of 10 elements
+  
+  for i := 0 to 10 do
+    count[i] = 0
+
+  // Store count of occurrences in count[]
+  for i := 0 to n do
+    count[arr[i] / exp % 10]++
+ 
+  // Change count[i] so that count[i] now contains
+  // actual position of this digit in output[]
+  for i := 1 to 10 do
+    count[i] += count[i - 1]
+
+  // Build the output array
+  for i := n - 1 to 0 do
+    output[count[arr[i] / exp % 10] - 1] = arr[i]
+    count[Math.floor(arr[i] / exp) % 10]--
+
+  // Copy the output array to arr[], so that arr[] now
+  // contains sorted numbers according to current digit
+  for i := 0 to n do
+    arr[i] = output[i]
+```
+### Radix Sort
+```
+RadixSort(arr[], n) 
+  // Find the maximum number to know number of digits
+  m := Maximal number in arr
+
+  // Do counting sort for every digit. Note that
+  // instead of passing digit number, exp is passed.
+  // exp is 10^i where i is current digit number
+  exp := 1
+  while m / exp > 0
+    CountSort(arr[], n, exp)
+    exp *= 10
+```
+### Shell Sort
+```
+ShellSort(arr[], n) 
+  // Start with a big gap, then reduce the gap
+  gap := n / 2
+  while gap > 0
+    // Do a gapped insertion sort for this gap size.
+    // The first gap elements a[0..gap-1] are already
+    // in gapped order keep adding one more element
+    // until the entire array is gap sorted
+    for i := gap to n do
+      // add a[i] to the elements that have been gap
+      // sorted save a[i] in temp and make a hole at
+      // position i
+      temp = arr[i]
+
+      // shift earlier gap-sorted elements up until
+      // the correct location for a[i] is found
+      j := i
+      while j >= gap and arr[j - gap] > temp
+        arr[j] = arr[j - gap];
+        j -= gap
+
+      // put temp (the original a[i]) in its correct
+      // location
+      arr[j] = temp;
+    }
+    gap = gap / 2
+  return arr[];
 ```
 
 
