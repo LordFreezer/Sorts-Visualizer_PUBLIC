@@ -4,7 +4,7 @@ https://sorts.netlify.app/
 ## About The Project
 Inspired by [Clément Mihailescu](https://github.com/clementmihailescu), I set out to create my own sorting algorithm
 visualizer. My variation includes merge sort, quick sort with both Lomuto and Hoare's 
-partition scheme, heap sort, bubble sort, selection sort, insertion sort, radix sort, shell sort, and merge sort.
+partition scheme, heap sort, bubble sort, selection sort, insertion sort, radix sort, and shell sort.
 
 ## Built With
 <table>
