@@ -34,7 +34,7 @@ Partition(arr[], lo, hi)
    // than pivot
    do
       j--
-   while (arr[j] > pivot);
+   while arr[j] > pivot
 
    if i >= j then 
       return j
